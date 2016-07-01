@@ -104,12 +104,12 @@
     <AndroidResource Include="Resources\layout\home_layout.axml" />
     <AndroidResource Include="Resources\menu\nav_menu.xml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
-    <AndroidResource Include="Resources\drawable\bg_material.png" />
     <AndroidResource Include="Resources\drawable\ic_home_black_24dp.png" />
     <AndroidResource Include="Resources\drawable\ic_devices_black_24dp.png" />
     <AndroidResource Include="Resources\values-v21\Styles.xml" />
     <AndroidResource Include="Resources\menu\action_menu.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\drawable\bg_material.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
