@@ -3,16 +3,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff46a2fd">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:text="Home"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:typeface="sans"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true" />
+    android:background="#ff46a2fd"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtHandshake"
+            android:textSize="18dp"
+            android:textColor="#ffffffff" />
+        <Button
+            android:text="Handshake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnHandshake" />
+    </LinearLayout>
 </RelativeLayout>
