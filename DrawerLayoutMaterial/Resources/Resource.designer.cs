@@ -2437,7 +2437,10 @@ namespace DrawerLayoutMaterial
 			public const int select_dialog_singlechoice_material = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int support_simple_spinner_dropdown_item = 2130968628;
+			public const int settings_layout = 2130968628;
+			
+			// aapt resource value: 0x7f040035
+			public const int support_simple_spinner_dropdown_item = 2130968629;
 			
 			static Layout()
 			{

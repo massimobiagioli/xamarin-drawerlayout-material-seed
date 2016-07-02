@@ -18,18 +18,11 @@ namespace DrawerLayoutMaterial
 		{
 			base.OnCreate(savedInstanceState);
 
-			// Init Layout
+			// Inizializza componenti
 			this.InitLayout();
-
-			// Init toolbar
 			this.InitToolbar();
-
-			// Init NavigationView
 			this.InitNavigationView();
-
-			// Init Fragment
-			var fragment = new HomeFragment();
-			this.LoadFragment(fragment);
+			this.InitFragment();
 		}
 
 		private void InitLayout()
@@ -47,7 +40,9 @@ namespace DrawerLayoutMaterial
 			SupportActionBar.SetDisplayShowHomeEnabled(true);
 
 			var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
+#pragma warning disable CS0618 // Type or member is obsolete
 			drawerLayout.SetDrawerListener(drawerToggle);
+#pragma warning restore CS0618 // Type or member is obsolete
 			drawerToggle.SyncState();
 		}
 
@@ -57,12 +52,15 @@ namespace DrawerLayoutMaterial
 			navigationView.NavigationItemSelected += NavigationItemSelected;
 		}
 
-		private void LoadFragment(Fragment toLoad)
+		private void InitFragment()
 		{
-			var ft = FragmentManager.BeginTransaction();
-			ft.AddToBackStack(null);
-			ft.Add(Resource.Id.fragment_content, toLoad);
-			ft.Commit();
+			FragmentHandler.Instance.LoadFragment(FragmentManager, Resource.Id.nav_home);
+		}
+
+		private void NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
+		{
+			FragmentHandler.Instance.LoadFragment(FragmentManager, e.MenuItem.ItemId);
+			drawerLayout.CloseDrawers();
 		}
 
 		protected override void OnResume()
@@ -71,41 +69,16 @@ namespace DrawerLayoutMaterial
 			base.OnResume();
 		}
 
-		private void NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
-		{
-			switch (e.MenuItem.ItemId)
-			{
-				case (Resource.Id.nav_home):
-					Toast.MakeText(this, "Home selected!", ToastLength.Short).Show();
-					break;
-				case (Resource.Id.nav_settings):
-					Toast.MakeText(this, "Settings selected!", ToastLength.Short).Show();
-					break;
-			}
-
-			drawerLayout.CloseDrawers();
-		}
-
 		public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
 		{
 			MenuInflater.Inflate(Resource.Menu.action_menu, menu);
-			if (menu != null)
-			{
-				menu.FindItem(Resource.Id.action_refresh).SetVisible(true);
-			}
+			OptionsMenuHandler.Instance.Init(menu);
 			return base.OnCreateOptionsMenu(menu);
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
-			switch (item.ItemId)
-			{
-				case Resource.Id.action_refresh:
-					Toast.MakeText(this, "Refresh!", ToastLength.Short).Show();
-					return true;
-				default:
-					return base.OnOptionsItemSelected(item);
-			}
+			return OptionsMenuHandler.Instance.Execute(item.ItemId, this);
 		}
 
 		public override void OnBackPressed()
