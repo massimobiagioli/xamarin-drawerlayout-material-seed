@@ -6,10 +6,16 @@ using Android.Widget;
 
 namespace DrawerLayoutMaterial
 {
+	/// <summary>
+	/// Gestore opzioni di menu
+	/// </summary>
 	public class OptionsMenuHandler
 	{
 		private static OptionsMenuHandler instance;
 
+		/// <summary>
+		/// Dizionario delle funzioni associate ai pulsanti di menu
+		/// </summary>
 		private static readonly Dictionary<int, Func<Activity, bool>> optionsMenuMap = new Dictionary<int, Func<Activity, bool>>
 		{
 			{ 
@@ -25,6 +31,10 @@ namespace DrawerLayoutMaterial
 		{
 		}
 
+		/// <summary>
+		/// Inizializza pulsanti toolbar
+		/// </summary>
+		/// <param name="menu">Toolbar menu</param>
 		public void Init(Android.Views.IMenu menu)
 		{
 			if (menu != null)
@@ -33,6 +43,11 @@ namespace DrawerLayoutMaterial
 			}
 		}
 
+		/// <summary>
+		/// Esecuzione funzione associata alla voce di menu
+		/// </summary>
+		/// <param name="resourceId">ID pulsante toolbar</param>
+		/// <param name="activity">Activity</param>
 		public bool Execute(int resourceId, Activity activity)
 		{
 			Func<Activity, bool> fn;
